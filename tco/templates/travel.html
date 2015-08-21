@@ -3,7 +3,7 @@
 {% block content %}
 <div class="col-sm-12" style="text-align: center;">
 <h4>Just one more step. complete the following</h4>
-<form method= "POST", action = 'travel/'>{% csrf_token %}
+<form method= "POST", action = '../food/'>{% csrf_token %}
 			{{form.as_p}}
 		<input type="submit" class="btn btn-success" value="carbon foot print">
 		</form>

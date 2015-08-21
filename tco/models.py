@@ -40,5 +40,45 @@ class Questions(models.Model):
 	input_size = models.CharField(max_length = 10, null = False, blank = False, choices = size_choice)
 
 
+
+class Travel_questions(models.Model):
+	input_footprint_transportation_miles1 = models.IntegerField(null=False, blank=False)
+	input_footprint_transportation_mpg1 = models.IntegerField()
+	input_footprint_transportation_fuel1 = models.IntegerField()
+	input_footprint_transportation_miles2 = models.IntegerField(null=False, blank=False)
+	input_footprint_transportation_mpg2 = models.IntegerField()
+	input_footprint_transportation_fuel2 = models.IntegerField()
+	input_footprint_transportation_publictrans = models.IntegerField()
+	input_footprint_transportation_airtotal = models.IntegerField()
 	def __unicode__(self):
 		return smart_unicode(self.input_location)
+
+
+class Housing_questions(models.Model):
+	"""questions related to travel expenses of a user"""
+	input_footprint_housing_electricity_type = models.IntegerField()
+	input_footprint_housing_cleanpercent = models.IntegerField(default=0)
+	input_footprint_housing_naturalgas_type = models.IntegerField(default=0)
+	input_footprint_housing_naturalgas_dollars = models.IntegerField(default=0)
+	input_footprint_housing_heatingoil_type = models.IntegerField(default=0)
+	input_footprint_housing_heatingoil_dollars = models.IntegerField(default=0)
+	input_footprint_housing_heatingoil_gallons = models.IntegerField(default=0)
+	input_footprint_housing_heatingoil_dollars_per_gallon = models.IntegerField(default=0)
+	input_footprint_housing_squarefeet = models.IntegerField(default=0)
+	input_footprint_housing_watersewage = models.FloatField(default=0)
+
+class Food_questions(models.Model):
+	"""questions related to food expenses of a user"""
+	input_footprint_shopping_food_meatfisheggs_default = models.FloatField(default=1357.5)
+	input_footprint_shopping_food_dairy_default = models.FloatField(default=715)
+	input_footprint_shopping_food_fruitvegetables_default = models.FloatField(default=677.5)
+	input_footprint_shopping_food_cereals = models.FloatField(default=1672.5)
+	input_footprint_shopping_food_otherfood = models.IntegerField(default=1840)
+
+class Shopping_questions(models.Model):
+	"""questions related to shopping expenses of a user"""
+	input_footprint_shopping_goods_type = models.IntegerField()
+	input_footprint_shopping_goods_total = models.FloatField()
+	input_footprint_shopping_services_type = models.IntegerField(default= 0)
+	input_footprint_shopping_services_total = models.FloatField()
+		

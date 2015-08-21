@@ -2,6 +2,10 @@ from django.db import models
 from django.utils.encoding import smart_unicode
 
 # Create your models here.
+class Result(models.Model):
+	grand_total = models.IntegerField()
+	total_reduction = models.IntegerField()
+
 class Questions(models.Model):
 	size_choice = (
         ('0', 'Average'),
@@ -34,6 +38,7 @@ class Questions(models.Model):
 	input_income = models.CharField(max_length=20,null = False, blank = False, choices = income_choices)
 	input_location_mode = models.CharField(max_length=10,null = False, blank = False, choices = location_mode_choice)
 	input_size = models.CharField(max_length = 10, null = False, blank = False, choices = size_choice)
+
 
 	def __unicode__(self):
 		return smart_unicode(self.input_location)

@@ -9,8 +9,10 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 	# url(r'^main', 'tco.views.main', name='main'),
 	url(r'^about-us', 'tco.views.aboutus', name='aboutus'),
- 
-
+    url(r'^housing', 'tco.views.housing', name='housing'),
+    url(r'^travel', 'tco.views.travel', name='travel'),
+    url(r'^food', 'tco.views.food', name='food'),
+    url(r'^shopping', 'tco.views.shopping', name='shopping'),
     url(r'^admin/', include(admin.site.urls)),
 )
 

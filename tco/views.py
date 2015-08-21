@@ -6,6 +6,7 @@ from .models import Result
 # Create your views here.
 def home(request):
 	form = QuestionsForm(request.POST or None)
+	result_grand_total = ""
 
 	if form.is_valid():
 		save_it = form.save(commit = False)
@@ -16,14 +17,10 @@ def home(request):
 		data["input_location_mode"] = save_it.input_location_mode
 		data["input_size"] = save_it.input_size
 		result_grand_total = coolclimate(data)
-		# p = Result(
-		# 	'grand_total'=result_grand_total,
-		# 	'total_reduction'=0
-		# 	)
-		# p.save()
 		return render_to_response('aboutus.html', 
-			{'result_grand_total':result_grand_total},
+			locals(),
 		 context_instance=RequestContext(request))
+
 	return render_to_response("main.html", locals(), 
 		context_instance = RequestContext(request))
 

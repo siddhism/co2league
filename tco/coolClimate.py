@@ -17,21 +17,20 @@ def postrequests(data ={}):
 	data["app_id"] = app_id
 	data["app_key"] = app_key
 	response = requests.get(url, params = data)
+
 	# print response.content
 	# return response.content
+
 	obj = xmltodict.parse(response.content)
-	# print obj['response']['result_grand_total']
+	print obj['response']['result_grand_total']
 	print type(float(unicode(obj["response"]["result_grand_total"])))
 	print float(unicode(obj["response"]["result_grand_total"]))
-	return float(unicode(obj["response"]["result_grand_total"]))
+	val = float(unicode(obj["response"]["result_grand_total"]))
+	val = int(val)
+	print val
+	return val
+	# return float(unicode(obj["response"]["result_grand_total"]))
 
 def coolclimate(data):
-	# data = {}
-	# data["input_location"] = 20120
-	# data["input_income"] = 1
-	# data["input_location_mode"] = 1
-	# data["input_size"] = 0
-	postrequests(data)
+	return postrequests(data)
 
-# if __name__ == "__main__":
-	# coolclimate(data)

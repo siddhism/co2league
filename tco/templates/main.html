@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
+{% load material_form %}
 
 {% block content %}
-<div class="col-sm-12" style="text-align: center;">
-<h4>Just one more step. complete the following</h4>
-<form method= "POST", action = ''>{% csrf_token %}
-			{{form.as_p}}
-		<input type="submit" class="btn btn-success" value="carbon foot print">
-		</form>
-</div>
+<form method="POST">
+        {% csrf_token %}
+        {% form form=form %}{% endform %}
+        <button type="submit" name="_submit" class="btn">Submit</button>
+    </form>
 {% endblock %}

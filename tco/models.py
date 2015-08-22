@@ -43,29 +43,29 @@ class Questions(models.Model):
 
 class Travel_questions(models.Model):
 	input_footprint_transportation_miles1 = models.IntegerField(null=False, blank=False)
-	input_footprint_transportation_mpg1 = models.IntegerField()
-	input_footprint_transportation_fuel1 = models.IntegerField()
+	input_footprint_transportation_mpg1 = models.IntegerField(blank=True)
+	input_footprint_transportation_fuel1 = models.IntegerField(blank=True)
 	input_footprint_transportation_miles2 = models.IntegerField(null=False, blank=False)
-	input_footprint_transportation_mpg2 = models.IntegerField()
-	input_footprint_transportation_fuel2 = models.IntegerField()
-	input_footprint_transportation_publictrans = models.IntegerField()
-	input_footprint_transportation_airtotal = models.IntegerField()
+	input_footprint_transportation_mpg2 = models.IntegerField(blank=True)
+	input_footprint_transportation_fuel2 = models.IntegerField(blank=True)
+	input_footprint_transportation_publictrans = models.IntegerField(blank=True)
+	input_footprint_transportation_airtotal = models.IntegerField(blank=True)
 	def __unicode__(self):
 		return smart_unicode(self.input_location)
 
 
 class Housing_questions(models.Model):
 	"""questions related to travel expenses of a user"""
-	input_footprint_housing_electricity_type = models.IntegerField()
-	input_footprint_housing_cleanpercent = models.IntegerField(default=0)
-	input_footprint_housing_naturalgas_type = models.IntegerField(default=0)
-	input_footprint_housing_naturalgas_dollars = models.IntegerField(default=0)
-	input_footprint_housing_heatingoil_type = models.IntegerField(default=0)
-	input_footprint_housing_heatingoil_dollars = models.IntegerField(default=0)
-	input_footprint_housing_heatingoil_gallons = models.IntegerField(default=0)
-	input_footprint_housing_heatingoil_dollars_per_gallon = models.IntegerField(default=0)
-	input_footprint_housing_squarefeet = models.IntegerField(default=0)
-	input_footprint_housing_watersewage = models.FloatField(default=0)
+	input_footprint_housing_electricity_type = models.IntegerField(default=0)
+	input_footprint_housing_cleanpercent = models.IntegerField(blank=True)
+	input_footprint_housing_naturalgas_type = models.IntegerField(blank=True)
+	input_footprint_housing_naturalgas_dollars = models.IntegerField(blank=True)
+	input_footprint_housing_heatingoil_type = models.IntegerField(blank=True)
+	input_footprint_housing_heatingoil_dollars = models.IntegerField(blank=True)
+	input_footprint_housing_heatingoil_gallons = models.IntegerField(blank=True)
+	input_footprint_housing_heatingoil_dollars_per_gallon = models.IntegerField(blank=True)
+	input_footprint_housing_squarefeet = models.IntegerField(blank=True)
+	input_footprint_housing_watersewage = models.FloatField(blank=True)
 
 class Food_questions(models.Model):
 	"""questions related to food expenses of a user"""
@@ -77,7 +77,7 @@ class Food_questions(models.Model):
 
 class Shopping_questions(models.Model):
 	"""questions related to shopping expenses of a user"""
-	input_footprint_shopping_goods_type = models.IntegerField()
+	input_footprint_shopping_goods_type = models.IntegerField(editable=False)
 	input_footprint_shopping_goods_total = models.FloatField()
-	input_footprint_shopping_services_type = models.IntegerField(default= 0)
+	input_footprint_shopping_services_type = models.IntegerField(editable=False)
 	input_footprint_shopping_services_total = models.FloatField()

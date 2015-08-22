@@ -38,6 +38,12 @@ class Questions(models.Model):
 	input_income = models.CharField(max_length=20,null = False, blank = False, choices = income_choices)
 	input_location_mode = models.CharField(max_length=10,null = False, blank = False, choices = location_mode_choice)
 	input_size = models.CharField(max_length = 10, null = False, blank = False, choices = size_choice)
+	input_footprint_transportation_publictrans = models.IntegerField(default = 0)
+	input_footprint_transportation_airtotal = models.IntegerField(default = 0)
+	input_footprint_housing_squarefeet = models.IntegerField(default = 0)
+	input_footprint_shopping_goods_total = models.FloatField(default = 0)
+	input_footprint_shopping_services_total = models.FloatField(default = 0)
+
 
 
 

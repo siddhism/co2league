@@ -6,8 +6,6 @@ from .models import Result
 
 # import sample_app as Insta
 
-data = {}
-# result_grand_total = 20
 
 def first_screen(request):
 	# user_data = Insta.home()
@@ -18,17 +16,23 @@ def first_screen(request):
 # Create your views here.
 def home(request):
 	form = QuestionsForm(request.POST or None)
-	# result_grand_total = ""
+	result_grand_total = ""
 	if form.is_valid():
 		save_it = form.save(commit = False)
 		save_it.save()
+		data = {}
 		data["input_location"] = save_it.input_location
 		data["input_income"] = save_it.input_income
 		data["input_location_mode"] = save_it.input_location_mode
 		data["input_size"] = save_it.input_size
+		data["input_footprint_transportation_publictrans"] = save_it.input_footprint_transportation_publictrans
+		data["input_footprint_transportation_airtotal"] = save_it.input_footprint_transportation_airtotal
+		data["input_footprint_housing_squarefeet"] = save_it.input_footprint_housing_squarefeet
+		data["input_footprint_shopping_goods_total"] = save_it.input_footprint_shopping_goods_total
+		data["input_footprint_shopping_services_total"] = save_it.input_footprint_shopping_services_total
+		
 		# global result_grand_total
 		result_grand_total = coolclimate(data)
-		# return redirect('aboutus',result_grand_total=result_grand_total)
 		return render_to_response("aboutus.html",
 			locals(),
 		 context_instance=RequestContext(request))
@@ -111,7 +115,7 @@ def shopping(request):
 		# result_grand_total = result_grand_total
 		# HttpResponseRedirect('/aboutus/')
 		# print result_grand_total
-		return render_to_response('aboutus.html',
+		return render_to_response("aboutus.html",
 			locals(),
 		 context_instance=RequestContext(request))
 

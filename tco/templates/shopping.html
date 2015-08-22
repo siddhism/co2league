@@ -2,10 +2,11 @@
 {% load material_form %}
 
 {% block content %}
-<form method="POST" ,action = '../aboutus/' >
+<form method="POST" ,action = ''{% url 'aboutus' %}'' >
         {% csrf_token %}
         {% form form=form %}
         {% endform %}
         <button type="submit" name="_submit" class="btn">Submit</button>
     </form>
+    <p>{{result_grand_total}}</p>
 {% endblock %}

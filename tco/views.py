@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response, RequestContext, HttpResponseRedirect
+from django.shortcuts import render, redirect, render_to_response, RequestContext, HttpResponseRedirect
 from .forms import *
 from .coolClimate import *
 from .models import Result
@@ -7,18 +7,18 @@ from .models import Result
 # import sample_app as Insta
 
 data = {}
-		
+# result_grand_total = 20
+
 def first_screen(request):
 	# user_data = Insta.home()
 	url = 'https://api.instagram.com/oauth/authorize/?client_id=6aeb81a251d948e181cd794232c65f8a&redirect_uri=http://localhost:8000/oauth_callback&response_type=token'
-
 	return render_to_response("first_screen.html", locals(),
 	 context_instance = RequestContext(request))
 
 # Create your views here.
 def home(request):
 	form = QuestionsForm(request.POST or None)
-	result_grand_total = ""
+	# result_grand_total = ""
 	if form.is_valid():
 		save_it = form.save(commit = False)
 		save_it.save()
@@ -26,11 +26,13 @@ def home(request):
 		data["input_income"] = save_it.input_income
 		data["input_location_mode"] = save_it.input_location_mode
 		data["input_size"] = save_it.input_size
-		# result_grand_total = coolclimate(data)
-		HttpResponseRedirect('/travel')
-		# return render_to_response('travel.html',
-		# 	locals(),
-		#  context_instance=RequestContext(request))
+		# global result_grand_total
+		result_grand_total = coolclimate(data)
+		# return redirect('aboutus',result_grand_total=result_grand_total)
+		return render_to_response("aboutus.html",
+			locals(),
+		 context_instance=RequestContext(request))
+
 	return render_to_response("main.html", locals(),
 			context_instance = RequestContext(request))
 
@@ -39,15 +41,19 @@ def travel(request):
 	if form.is_valid():
 		save_it = form.save(commit = False)
 		save_it.save()
-		data["input_footprint_transportation_miles1"] = save_it.input_footprint_transportation_miles1
-		data["input_footprint_transportation_mpg1"] = save_it.input_footprint_transportation_mpg1
-		data["input_footprint_transportation_fuel1"] = save_it.input_footprint_transportation_fuel1
-		data["input_footprint_transportation_miles2"] = save_it.input_footprint_transportation_miles2
-		data["input_footprint_transportation_mpg2"] = save_it.input_footprint_transportation_mpg2
-		data["input_footprint_transportation_fuel2"] = save_it.input_footprint_transportation_fuel2
-		data["input_footprint_transportation_publictrans"] = save_it.input_footprint_transportation_miles1
-		data["input_footprint_transportation_airtotal"] = save_it.input_footprint_transportation_airtotal
-		HttpResponseRedirect('/food')
+		# data["input_footprint_transportation_miles1"] = save_it.input_footprint_transportation_miles1
+		# data["input_footprint_transportation_mpg1"] = save_it.input_footprint_transportation_mpg1
+		# data["input_footprint_transportation_fuel1"] = save_it.input_footprint_transportation_fuel1
+		# data["input_footprint_transportation_miles2"] = save_it.input_footprint_transportation_miles2
+		# data["input_footprint_transportation_mpg2"] = save_it.input_footprint_transportation_mpg2
+		# data["input_footprint_transportation_fuel2"] = save_it.input_footprint_transportation_fuel2
+		# data["input_footprint_transportation_publictrans"] = save_it.input_footprint_transportation_miles1
+		# data["input_footprint_transportation_airtotal"] = save_it.input_footprint_transportation_airtotal
+		# HttpResponseRedirect('/food')
+		return render_to_response('food.html',
+			locals(),
+		 context_instance=RequestContext(request))
+	
 	return render_to_response("travel.html", locals(),
 		context_instance = RequestContext(request))
 
@@ -56,17 +62,21 @@ def food(request):
 	if form.is_valid():
 		save_it = form.save(commit = False)
 		save_it.save()
-		data["input_footprint_housing_electricity_type"] = save_it.input_footprint_housing_electricity_type
-		data["input_footprint_housing_cleanpercent"] = save_it.input_footprint_housing_cleanpercent
-		data["input_footprint_housing_naturalgas_type"] = save_it.input_footprint_housing_naturalgas_type
-		data["input_footprint_housing_naturalgas_dollars"] = save_it.input_footprint_housing_naturalgas_dollars
-		data["input_footprint_housing_heatingoil_type"] = save_it.input_footprint_housing_heatingoil_type
-		data["input_footprint_housing_heatingoil_dollars"] = save_it.input_footprint_housing_heatingoil_dollars
-		data["input_footprint_housing_heatingoil_gallons"] = save_it.input_footprint_housing_heatingoil_gallons
-		data["input_footprint_housing_heatingoil_dollars_per_gallon"] = save_it.input_footprint_housing_heatingoil_dollars_per_gallon
-		data["input_footprint_housing_squarefeet"] = save_it.input_footprint_housing_squarefeet
-		data["input_footprint_housing_watersewage"] = save_it.input_footprint_housing_watersewage
-		HttpResponseRedirect('/housing/')
+		# data["input_footprint_housing_electricity_type"] = save_it.input_footprint_housing_electricity_type
+		# data["input_footprint_housing_cleanpercent"] = save_it.input_footprint_housing_cleanpercent
+		# data["input_footprint_housing_naturalgas_type"] = save_it.input_footprint_housing_naturalgas_type
+		# data["input_footprint_housing_naturalgas_dollars"] = save_it.input_footprint_housing_naturalgas_dollars
+		# data["input_footprint_housing_heatingoil_type"] = save_it.input_footprint_housing_heatingoil_type
+		# data["input_footprint_housing_heatingoil_dollars"] = save_it.input_footprint_housing_heatingoil_dollars
+		# data["input_footprint_housing_heatingoil_gallons"] = save_it.input_footprint_housing_heatingoil_gallons
+		# data["input_footprint_housing_heatingoil_dollars_per_gallon"] = save_it.input_footprint_housing_heatingoil_dollars_per_gallon
+		# data["input_footprint_housing_squarefeet"] = save_it.input_footprint_housing_squarefeet
+		# data["input_footprint_housing_watersewage"] = save_it.input_footprint_housing_watersewage
+		# HttpResponseRedirect('/housing/')
+		return render_to_response('travel.html',
+			locals(),
+		 context_instance=RequestContext(request))
+	
 	return render_to_response("food.html", locals(),
 		context_instance = RequestContext(request))
 
@@ -75,12 +85,16 @@ def housing(request):
 	if form.is_valid():
 		save_it = form.save(commit = False)
 		save_it.save()
-		data["input_footprint_shopping_food_meatfisheggs_default"] = save_it.input_footprint_shopping_food_meatfisheggs_default
-		data["input_footprint_shopping_food_dairy_default"] = save_it.input_footprint_shopping_food_dairy_default
-		data["input_footprint_shopping_food_fruitvegetables_default"] = save_it.input_footprint_shopping_food_fruitvegetables_default
-		data["input_footprint_shopping_food_cereals"] = save_it.input_footprint_shopping_food_cereals
-		data["input_footprint_shopping_food_otherfood"] = save_it.input_footprint_shopping_food_otherfood
-		HttpResponseRedirect('/shopping/')
+		# data["input_footprint_shopping_food_meatfisheggs_default"] = save_it.input_footprint_shopping_food_meatfisheggs_default
+		# data["input_footprint_shopping_food_dairy_default"] = save_it.input_footprint_shopping_food_dairy_default
+		# data["input_footprint_shopping_food_fruitvegetables_default"] = save_it.input_footprint_shopping_food_fruitvegetables_default
+		# data["input_footprint_shopping_food_cereals"] = save_it.input_footprint_shopping_food_cereals
+		# data["input_footprint_shopping_food_otherfood"] = save_it.input_footprint_shopping_food_otherfood
+		# HttpResponseRedirect('/shopping/')
+		return render_to_response('travel.html',
+			locals(),
+		 context_instance=RequestContext(request))
+	
 	return render_to_response("housing.html", locals(),
 		context_instance = RequestContext(request))
 
@@ -89,13 +103,14 @@ def shopping(request):
 	if form.is_valid():
 		save_it = form.save(commit = False)
 		save_it.save()
-		data["input_footprint_shopping_goods_type"] = save_it.input_footprint_shopping_goods_type
-		data["input_footprint_shopping_goods_total"] = save_it.input_footprint_shopping_goods_total
-		data["input_footprint_shopping_services_type"] = save_it.input_footprint_shopping_services_type
-		data["input_footprint_shopping_services_total"] = save_it.input_footprint_shopping_services_total
-
-		result_grand_total = coolclimate(data)
-		# HttpResponseRedirect('/about-us/')
+		# data["input_footprint_shopping_goods_type"] = save_it.input_footprint_shopping_goods_type
+		# data["input_footprint_shopping_goods_total"] = save_it.input_footprint_shopping_goods_total
+		# data["input_footprint_shopping_services_type"] = save_it.input_footprint_shopping_services_type
+		# data["input_footprint_shopping_services_total"] = save_it.input_footprint_shopping_services_total
+		# global result_grand_total
+		# result_grand_total = result_grand_total
+		# HttpResponseRedirect('/aboutus/')
+		# print result_grand_total
 		return render_to_response('aboutus.html',
 			locals(),
 		 context_instance=RequestContext(request))

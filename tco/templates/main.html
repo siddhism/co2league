@@ -2,7 +2,7 @@
 {% load material_form %}
 
 {% block content %}
-<form method="POST" , action ="travel/">
+<form method="POST" , action =''>
         {% csrf_token %}
         {% form form=form %}{% endform %}
         <button type="submit" name="_submit" class="btn">Submit</button>

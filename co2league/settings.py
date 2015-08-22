@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social.apps.django_app.default',
     'tco',
 )
 
@@ -117,3 +118,12 @@ if DEBUG:
     STATICFILES_DIRS =    (
         os.path.join(BASE_DIR, "static", "static"),
     )
+
+AUTHENTICATION_BACKENDS = (
+   'social.backends.instagram.InstagramOAuth2',
+   )
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'http://localhost:8000/user_start'
+
+SOCIAL_AUTH_INSTAGRAM_KEY = '6aeb81a251d948e181cd794232c65f8a'
+SOCIAL_AUTH_INSTAGRAM_SECRET = 'b138bea14ebb4fd4936fc08151c72529'

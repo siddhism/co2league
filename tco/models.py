@@ -77,7 +77,7 @@ class Food_questions(models.Model):
 
 class Shopping_questions(models.Model):
 	"""questions related to shopping expenses of a user"""
-	input_footprint_shopping_goods_type = models.IntegerField(editable=False)
+	input_footprint_shopping_goods_type = models.IntegerField()
 	input_footprint_shopping_goods_total = models.FloatField()
-	input_footprint_shopping_services_type = models.IntegerField(editable=False)
+	input_footprint_shopping_services_type = models.IntegerField()
 	input_footprint_shopping_services_total = models.FloatField()

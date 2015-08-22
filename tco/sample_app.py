@@ -1,6 +1,5 @@
 import bottle
 import beaker.middleware
-import instagram
 from bottle import route, redirect, post, run, request, hook
 from instagram import client, subscriptions
 

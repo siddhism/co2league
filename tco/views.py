@@ -9,13 +9,9 @@ from .models import Result
 data = {}
 		
 def first_screen(request):
-	# data = sample_app.home()
-	# access_token = "YOUR_ACCESS_TOKEN"
-	# client_secret = "YOUR_CLIENT_SECRET"
-	# api = InstagramAPI(access_token=access_token, client_secret=client_secret)
-	# recent_media, next_ = api.user_recent_media(user_id="userid", count=10)
-	# for media in recent_media:
- 	# print media.caption.text
+	# user_data = Insta.home()
+	url = 'https://api.instagram.com/oauth/authorize/?client_id=6aeb81a251d948e181cd794232c65f8a&redirect_uri=http://localhost:8000/oauth_callback&response_type=token'
+
 	return render_to_response("first_screen.html", locals(),
 	 context_instance = RequestContext(request))
 
@@ -99,11 +95,10 @@ def shopping(request):
 		data["input_footprint_shopping_services_total"] = save_it.input_footprint_shopping_services_total
 
 		result_grand_total = coolclimate(data)
-		# HttpResponseRedirect('aboutus')
-		# return render_to_response('aboutus.html',
-		# 	locals(),
-		#  context_instance=RequestContext(request))
-		return HttpResponseRedirect('/aboutus/')
+		# HttpResponseRedirect('/about-us/')
+		return render_to_response('aboutus.html',
+			locals(),
+		 context_instance=RequestContext(request))
 
 	return render_to_response("shopping.html", locals(),
 		context_instance = RequestContext(request))

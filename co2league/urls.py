@@ -14,8 +14,9 @@ urlpatterns = patterns('',
     url(r'^travel', 'tco.views.travel', name='travel'),
     url(r'^food', 'tco.views.food', name='food'),
     url(r'^shopping', 'tco.views.shopping', name='shopping'),
-    url(r'^user_start', 'tco.views.user_start', name='user_start'),
+    url(r'^oauth_callback', 'tco.views.user_start', name='user_start'),
     url(r'^first_screen', 'tco.views.first_screen', name='first_screen'),
+    url('', include('social.apps.django_app.urls', namespace='social')),
     url(r'^admin/', include(admin.site.urls)),
 )
 
